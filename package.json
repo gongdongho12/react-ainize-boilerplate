@@ -7,17 +7,19 @@
     "url": "https://github.com/gongdongho12/react-ainize-boilerplate"
   },
   "author": {
-    "name" : "Dongho Gang",
-    "email" : "gongdongho12@gmail.com"
+    "name": "Dongho Gang",
+    "email": "gongdongho12@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/gongdongho12/react-ainize-boilerplate/issues",
     "email": "gongdongho12@gmail.com"
   },
-  "licenses" : [{
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "dependencies": {
     "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
@@ -46,7 +48,7 @@
     "react-scripts": "3.4.1",
     "recoil": "0.0.10",
     "styled-components": "^5.1.1",
-    "typescript": "~3.7.2"
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "craco start",
