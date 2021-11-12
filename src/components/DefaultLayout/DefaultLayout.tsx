@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 import LanguageSelector from "components/LanguageSelector";
-import { assignRouteProps } from "utils";
+import { assignRouteArrayProps } from "utils";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -28,12 +28,30 @@ const menuStyle = {
 }
 
 const defaultMenus = Object.keys(routerMeta).reduce((prev: any[], componentKey: string) => {
-  const { path } = assignRouteProps(routerMeta[componentKey])
-  const slashLength: number = (path.match(/\//gi) || []).length
-  if (slashLength === 1) {
-    return [ ...prev, { componentKey, path } ]
+  const propsArr: any = assignRouteArrayProps(routerMeta[componentKey])
+  const { path } = assignRouteArrayProps(routerMeta[componentKey])
+  Array.isArray(propsArr)
+
+  const getPath = (path: string) => (path.match(/\//gi) || []).length
+
+  const pathWIthSlashLengthArr: any | any[] = Array.isArray(propsArr) ? propsArr.map(({ path }) => ({ path, length: getPath(path) })) : ({ path, length: getPath(path) })
+
+  if (Array.isArray(pathWIthSlashLengthArr)) {
+    const assignPathData = pathWIthSlashLengthArr.reduce((prevArr, { path, length }) => {
+      if (length === 1) {
+        return [...prevArr, { componentKey, path }]
+      } else {
+        return prevArr
+      }
+    }, [])
+    return [...prev, ...assignPathData]
   } else {
-    return prev
+    const { path, length } = pathWIthSlashLengthArr
+    if (length === 1) {
+      return [...prev, { componentKey, path }]
+    } else {
+      return prev
+    }
   }
 }, [])
 
@@ -55,9 +73,9 @@ const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
         <div className="logo" style={{ color: "white", width: 200 }}>
           {fm({ id: "title" })}
         </div>
-        <Menu theme="dark" mode="horizontal" style={menuStyle} defaultSelectedKeys={["1"]}>
-          {defaultMenus.map(({ componentKey, path }) => <Menu.Item key={componentKey}>
-            <Link to={path}>{componentKey}</Link>
+        <Menu theme="dark" mode="horizontal" style={menuStyle}>
+          {defaultMenus.map(({ componentKey, path }) => <Menu.Item key={path}>
+            <Link to={path}>{componentKey} ({path})</Link>
           </Menu.Item>)}
 
           <Menu.Item key="language-selector" disabled style={{ opacity: 1, marginLeft: 'auto' }}>
@@ -66,7 +84,7 @@ const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
         </Menu>
       </Header>
       <Layout>
-        <Sider width={200} className="site-layout-background">
+        {/* <Sider width={200} className="site-layout-background">
           <Menu
             mode="inline"
             defaultSelectedKeys={["1"]}
@@ -96,7 +114,7 @@ const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
               <Menu.Item key="12">option12</Menu.Item>
             </SubMenu>
           </Menu>
-        </Sider>
+        </Sider> */}
         <Layout style={{ padding: "0 24px 24px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             {pathDom}

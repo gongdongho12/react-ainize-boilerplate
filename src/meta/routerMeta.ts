@@ -1,10 +1,12 @@
 import { RouteProps } from "react-router-dom"
 
-export type RouterMetaType = { [key: string] : (string | Omit<RouteProps, 'component'>) } 
+type RouteMetaType = (string | Omit<RouteProps, 'component'>)
 
-const routerMeta: RouterMetaType = {
+export type RouterMetaTypes = { [key: string] : RouteMetaType | RouteMetaType[] } 
+
+const routerMeta: RouterMetaTypes = {
   Home: { path: '/' },
-  About: '/about',
+  About: ['/about', '/test'],
 }
 
 export default routerMeta

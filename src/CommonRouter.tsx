@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, FunctionComponent } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { routerMeta } from 'meta';
-import { assignRouteProps } from 'utils';
+import { assignRouteArrayProps } from 'utils';
 
 interface ICustomRotuerProps {
 }
@@ -9,25 +9,32 @@ interface ICustomRotuerProps {
 const lazyImport = (containerName: string) => lazy(() => import(`containers/${containerName}`));
 
 interface AssignRoute {
-  component: any,
-  props: any
+  Comp: any,
+  propsArr: any | any[]
 }
 
 const assignRouter: AssignRoute[] = Object.keys(routerMeta).map((componentKey: string) => {
-  const props: any = assignRouteProps(routerMeta[componentKey])
-
+  const propsArr: any = assignRouteArrayProps(routerMeta[componentKey])
   return {
-    component: lazyImport(componentKey),
-    props 
+    Comp: lazyImport(componentKey),
+    propsArr
   }
 })
 
 const CommonRouter: FunctionComponent<ICustomRotuerProps> = (props) => {
   return <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        {assignRouter.map(({ component: Comp, props }) => <Route key={props.path} element={<Comp />} {...props} />)}
-      </Routes>
-    </Suspense>;
+    <Routes>
+      {assignRouter.map(({ Comp, propsArr }) => {
+        if (Array.isArray(propsArr)) {
+          return propsArr.map(props => {
+            return <Route key={props.path} element={<Comp />} {...props} />
+          })
+        } else {
+          return <Route key={propsArr.path} element={<Comp />} {...propsArr} />
+        }
+      })}
+    </Routes>
+  </Suspense>;
 };
 
 export default CommonRouter;
