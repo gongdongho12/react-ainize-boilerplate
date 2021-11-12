@@ -20,7 +20,7 @@ const LanguageSelector: FunctionComponent = () => {
   return <Select
     defaultValue={lang}
     value={lang}
-    style={{ width: 80 }}
+    style={{ width: 100 }}
     onChange={(value: Lang) => {
       setLang(value)
     }}>

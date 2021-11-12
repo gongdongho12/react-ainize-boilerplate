@@ -58,7 +58,11 @@ const defaultMenus = Object.keys(routerMeta).reduce((prev: any[], componentKey: 
 const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
   const { children } = props;
   const { formatMessage: fm } = useIntl();
-  const location  = useLocation();
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log('pathname', location.pathname)
+  }, [location])
 
   const pathDom = useMemo(() => {
     const { pathname } = location
@@ -73,7 +77,7 @@ const DefaultLayout: FunctionComponent<IDefaultLayoutProps> = (props) => {
         <div className="logo" style={{ color: "white", width: 200 }}>
           {fm({ id: "title" })}
         </div>
-        <Menu theme="dark" mode="horizontal" style={menuStyle}>
+        <Menu theme="dark" mode="horizontal" style={menuStyle} activeKey={location.pathname} selectable={false}>
           {defaultMenus.map(({ componentKey, path }) => <Menu.Item key={path}>
             <Link to={path}>{componentKey} ({path})</Link>
           </Menu.Item>)}
