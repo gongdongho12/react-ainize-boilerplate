@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import "antd/dist/antd.less";
 import { IntlProvider } from "react-intl";
 import CommonRouter from "./CommonRouter";

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, FunctionComponent } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { routerMeta } from 'meta';
 import { assignRouteProps } from 'utils';
 
@@ -24,9 +24,9 @@ const assignRouter: AssignRoute[] = Object.keys(routerMeta).map((componentKey: s
 
 const CommonRouter: FunctionComponent<ICustomRotuerProps> = (props) => {
   return <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        {assignRouter.map(({ component, props }) => <Route key={props.path} component={component} {...props} />)}
-      </Switch>
+      <Routes>
+        {assignRouter.map(({ component: Comp, props }) => <Route key={props.path} element={<Comp />} {...props} />)}
+      </Routes>
     </Suspense>;
 };
 

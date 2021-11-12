@@ -5,20 +5,32 @@
     "node": true
   },
   "extends": [
+    "airbnb-base",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "airbnb-base",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/react-hooks"
+    "plugin:react-hooks/recommended",
+    "plugin:import/typescript"
   ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "@types"]
+      },
+      "typescript": {} // 프로젝트 Root의 tsconfig.json을 찾는다.
+    }
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -30,6 +42,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "ignorePatterns": "craco.config.js",
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -38,6 +51,37 @@
     "no-case-declarations": "off",
     "react/prop-types": "off",
     "no-empty-pattern": "off",
-    "no-fallthrough": "off"
+    "no-fallthrough": "off",
+    "linebreak-style": "off",
+    "max-len":"off",
+    "no-shadow":"off",
+    "quotes": "off",
+    "semi":"off",
+    "import/extensions": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "arrow-body-style": "off",
+    "import/order": "off",
+    "no-trailing-spaces": "off",
+    "comma-dangle": "off",
+    "array-bracket-spacing":"off",
+    "no-else-return": "off",
+    "no-multi-spaces": "off",
+    "no-confusing-arrow": "off",
+    "arrow-parens":"off",
+    "eol-last":"off",
+    "import/newline-after-import": "off",
+    "padded-blocks": "off",
+    "no-multiple-empty-lines":"off",
+    "import/prefer-default-export": "off",
+    "operator-linebreak": "off",
+    "no-restricted-syntax": "off",
+    "prefer-const": "off",
+    "generator-star-spacing": "off",
+    "no-plusplus":"off",
+    "no-use-before-define": "off",
+    "no-param-reassign": "off",
+    "no-prototype-builtins": "off",
+    "prefer-template": "off",
+    "array-callback-return": "off"
   }
 }
