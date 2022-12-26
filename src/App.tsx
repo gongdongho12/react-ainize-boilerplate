@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "antd/dist/antd.less";
+// import "antd/dist/antd.less";
 import { IntlProvider } from "react-intl";
 import CommonRouter from "./CommonRouter";
 import { BrowserRouter as Router } from "react-router-dom";
