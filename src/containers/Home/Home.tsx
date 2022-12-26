@@ -1,5 +1,5 @@
 import React, { FunctionComponent, CSSProperties } from "react";
-import DefaultLayout from "components/DefaultLayout";
+import DefaultLayout from "@/components/DefaultLayout";
 
 interface ICardViewProps {}
 

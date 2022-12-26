@@ -1,5 +1,5 @@
 import styled, { CSSProperties } from 'styled-components'
-import { propsToStyle } from "utils";
+import { propsToStyle } from "@/utils";
 
 interface Props {
   style?: CSSProperties

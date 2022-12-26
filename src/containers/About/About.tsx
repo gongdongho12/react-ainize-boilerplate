@@ -1,5 +1,5 @@
-import DefaultLayout from "components/DefaultLayout";
 import React, { FunctionComponent } from "react";
+import DefaultLayout from "@/components/DefaultLayout";
 interface IAboutProps {
 }
 

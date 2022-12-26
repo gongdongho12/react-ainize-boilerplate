@@ -1,12 +1,14 @@
 import React, { Suspense, lazy, FunctionComponent } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { routerMeta } from 'meta';
-import { assignRouteArrayProps } from 'utils';
+import { routerMeta } from '@/meta';
+import { assignRouteArrayProps } from '@/utils';
+import NotFound from '@/components/NotFound';
+import FlexCenter from '@/components/FlexCenter';
 
 interface ICustomRotuerProps {
 }
 
-const lazyImport = (containerName: string) => lazy(() => import(`containers/${containerName}`));
+const lazyImport = (containerName: string) => lazy(() => import(`@/containers/${containerName}`));
 
 interface AssignRoute {
   Comp: any,
@@ -22,7 +24,7 @@ const assignRouter: AssignRoute[] = Object.keys(routerMeta).map((componentKey: s
 })
 
 const CommonRouter: FunctionComponent<ICustomRotuerProps> = (props) => {
-  return <Suspense fallback={<div>Loading...</div>}>
+  return <Suspense fallback={<FlexCenter>Loading...</FlexCenter>}>
     <Routes>
       {assignRouter.map(({ Comp, propsArr }) => {
         if (Array.isArray(propsArr)) {
@@ -33,6 +35,7 @@ const CommonRouter: FunctionComponent<ICustomRotuerProps> = (props) => {
           return <Route key={propsArr.path} element={<Comp />} {...propsArr} />
         }
       })}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </Suspense>;
 };

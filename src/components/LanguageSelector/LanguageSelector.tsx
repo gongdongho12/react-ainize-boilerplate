@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useMemo, ReactElement } from "react";
 import { useRecoilState } from "recoil";
 import { useIntl } from "react-intl";
-import langState, { messages, Lang } from "state/lang";
+import langState, { messages, Lang } from "@/state/lang";
 import { Select } from "antd";
-import accountState from "state/account";
 
 const { Option } = Select;
 
