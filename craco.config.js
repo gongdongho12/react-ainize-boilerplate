@@ -1,4 +1,3 @@
-const {ESLINT_MODES } = require("@craco/craco");
 const CracoLessPlugin = require('craco-less');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const OpenBrowserPlugin = require("open-browser-webpack-plugin");
@@ -45,8 +44,5 @@ module.exports = {
 		plugins: [
 			new TsconfigPathsPlugin({ configFile: tsConfigPath })
 		],
-	},
-	eslint: {
-		mode: ESLINT_MODES.file,
-	},
+	}
 };
