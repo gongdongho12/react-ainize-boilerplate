@@ -1,5 +1,13 @@
 # React Ainize Boilerplate
 
+## How to use?
+
+Just enter the command below in the terminal to create the project.
+
+```bash
+npx https://github.com/gongdongho12/npx-bolierplate [project_name]
+```
+
 ## React Boilerplate
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [craco](https://github.com/gsoft-inc/craco).
