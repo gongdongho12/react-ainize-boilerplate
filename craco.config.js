@@ -1,7 +1,5 @@
 const {ESLINT_MODES } = require("@craco/craco");
 const CracoLessPlugin = require('craco-less');
-const CracoAntDesignPlugin = require("craco-antd");
-// const CracoAlias = require("craco-alias");
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 const path = require("path");
@@ -12,15 +10,6 @@ const tsConfigPath = path.resolve(__dirname, "./tsconfig.json")
 module.exports = {
 	reactScriptsVersion: "react-scripts",
 	plugins: [
-		{
-			plugin: CracoAntDesignPlugin,
-			options: {
-				customizeThemeLessPath: path.join(
-					__dirname,
-					"src/theme/customize.theme.less"
-				),
-			},
-		},
 		{
 			plugin: CracoLessPlugin,
 			options: {
