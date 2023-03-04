@@ -53,8 +53,9 @@
     "build": "craco build",
     "test": "craco test",
     "docker-build": "docker build -t dongho1596/react-ainize-boilerplate .",
-    "docker-run": "docker run -d -p 80:80 dongho1596/react-ainize-boilerplate:latest",
     "docker-deploy": "docker push dongho1596/react-ainize-boilerplate",
+    "docker-buildx-deploy": "docker buildx build --push --no-cache --platform linux/arm64/v8,linux/amd64 -t dongho1596/react-ainize-boilerplate .",
+    "docker-run": "docker run -d -p 80:80 dongho1596/react-ainize-boilerplate",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
